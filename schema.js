@@ -1,6 +1,20 @@
-const { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean, GraphQLSchema, GraphQLList } = require('graphql');
+const { GraphQLObjectType,
+        GraphQLInt,
+        GraphQLString,
+        GraphQLBoolean,
+        GraphQLSchema,
+        GraphQLList } = require('graphql');
 
 const axios = require('axios');
+
+const RocketType = new GraphQLObjectType({
+  name: 'Rocket',
+  fields: () => ({
+    rocket_id: { type: GraphQLString },
+    rocket_name: { type: GraphQLString },
+    rocket_type: { type: GraphQLString }
+  })
+});
 
 // Launch GraphQLObjectType
 const LaunchType = new GraphQLObjectType({
@@ -12,15 +26,6 @@ const LaunchType = new GraphQLObjectType({
     launch_date_local: { type: GraphQLString },
     launch_success: { type: GraphQLBoolean },
     rocket: { type: RocketType }
-  })
-});
-
-const RocketType = new GraphQLObjectType({
-  name: 'Rocket',
-  fields: () => ({
-    rocket_id: { type: GraphQLString },
-    rocket_name: { type: GraphQLString },
-    rocket_type: { type: GraphQLString }
   })
 });
 
@@ -39,11 +44,11 @@ const RootQuery = new GraphQLObjectType({
       args: {
         flight_number: {
           type: GraphQLInt
-        },
-        resolve(parent, args){
-          return axios.get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`)
-                      .then(res => res.data);
         }
+      },
+      resolve(parent, args){
+        return axios.get(`https://api.spacexdata.com/v3/launches/${args.flight_number}`)
+                    .then(res => res.data);
       }
     },
     rockets: {
@@ -58,11 +63,11 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: {
           type: GraphQLInt
-        },
-        resolve(parent, args){
-          return axios.get(`https://api.spacexdata.com/v3/rockets/${args.id}`)
-                      .then(res => res.data);
         }
+      },
+      resolve(parent, args){
+        return axios.get(`https://api.spacexdata.com/v3/rockets/${args.id}`)
+                    .then(res => res.data);
       }
     }
   }
