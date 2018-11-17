@@ -3,6 +3,7 @@ import './App.css';
 import ApolloClient  from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import Launches from './components/Launches';
+import Launch from './components/Launch';
 import logo from './logo.jpg';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -18,7 +19,8 @@ class App extends Component {
           <div className="container">
             <img src={logo} alt="SpaceX" style={{ width: 300, display: 'block', margin: 'auto' }}/>
             <Route exact path="/" component={Launches}/>
-          
+            <Route exact path="/launch:flight_number" component={Launch}/>
+
           </div>
         </Router>
       </ApolloProvider>
