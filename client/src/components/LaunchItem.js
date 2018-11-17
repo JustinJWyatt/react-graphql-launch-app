@@ -16,7 +16,7 @@ export default function LaunchItem({ launch: { flight_number, mission_name, laun
         </div>
 
         <div className="col-md-3">
-          <Link to={`/launch/${flight_number}`} className="btn btn-secondary">Launch Details</Link>
+          // <Link to={`/launch/${flight_number}`} className="btn btn-secondary">Launch Details</Link>
         </div>
       </div>
   </div>;
