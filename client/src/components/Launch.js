@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import gql from 'graphql-tag';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { Query } from 'react-apollo';
 
 const LAUNCH_QUERY = gql`
@@ -79,6 +81,9 @@ class Launch extends Component {
                   <li className="list-group-item">Rocket Name: {rocket_name}</li>
                   <li className="list-group-item">Rocket Type: {rocket_type}</li>
                 </ul>
+
+                <hr/>
+                <Link to="/" className="btn btn-secondary">Back</Link>
               </div>
             );
           }}
